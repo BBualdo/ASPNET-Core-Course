@@ -9,4 +9,12 @@
       await context.Response.WriteAsync("Custom middleware has been ended!\n");
     }
   }
+
+  public static class CustomMiddlewareExtension
+  {
+    public static IApplicationBuilder UseCustomMiddleware(this IApplicationBuilder app)
+    {
+      return app.UseMiddleware<CustomMiddleware>();
+    }
+  }
 }
