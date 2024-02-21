@@ -1,16 +1,24 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.Run(async (HttpContext context) =>
+// middleware 1
+app.Use(async (HttpContext context, RequestDelegate next) =>
 {
-  await context.Response.WriteAsync("Hello");
+  await context.Response.WriteAsync("Hello\n");
+  await next(context);
 });
 
+// middleware 2
+app.Use(async (HttpContext context, RequestDelegate next) =>
+{
+  await context.Response.WriteAsync("Hello again!\n");
+  await next(context);
+});
 
-// This code doesn't run because Run method doesn't forward the request to next middleware
+// middleware 3 (terminating middleware)
 app.Run(async (HttpContext context) =>
 {
-  await context.Response.WriteAsync("Hello again!");
+  await context.Response.WriteAsync("Hello one more time!\n");
 });
 
 app.Run();
