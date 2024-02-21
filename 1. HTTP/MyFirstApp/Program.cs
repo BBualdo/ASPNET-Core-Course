@@ -3,11 +3,11 @@ var app = builder.Build();
 
 app.Run(async (HttpContext context) =>
 {
-  context.Response.Headers["MyKey"] = "My Value";
-  context.Response.Headers["Server"] = "My Server (Kestrel)";
+  string method = context.Request.Method;
+  string path = context.Request.Path;
   context.Response.Headers["Content-Type"] = "text/html";
-  await context.Response.WriteAsync("<h1>Hello World!</h1>");
-  await context.Response.WriteAsync("<h2>This is Content-Type of text/html.</h2>");
+  await context.Response.WriteAsync($"<h1>{path}</h1>");
+  await context.Response.WriteAsync($"<h3>{method}</h3>");
 });
 
 app.Run();
