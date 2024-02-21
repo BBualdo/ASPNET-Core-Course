@@ -1,72 +1,108 @@
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder();
 var app = builder.Build();
 
 app.Run(async (HttpContext context) =>
 {
-  if (context.Request.Method == "GET")
+  HttpResponse response = context.Response;
+  HttpRequest request = context.Request;
+
+  if (request.Method == "GET" && request.Path == "/")
   {
-    string firstNumber = context.Request.Query["firstNumber"];
-    string secondNumber = context.Request.Query["secondNumber"];
-    string operation = context.Request.Query["operation"];
+    int firstNumber = 0;
+    int secondNumber = 0;
+    string? operation = null;
+    long? result = null;
 
-    int? result = null;
+    // 'firstNumber' check and assignment
+    if (request.Query.ContainsKey("firstNumber"))
+    {
+      string? firstNumberQuery = request.Query["firstNumber"][0];
 
-    if (firstNumber == null)
-    {
-      await context.Response.WriteAsync("Invalid input for 'firstNumber'");
-      return;
-    }
-    if (secondNumber == null)
-    {
-      await context.Response.WriteAsync("Invalid input for 'secondNumber'");
-      return;
-    }
-    // Why using || operator makes Invalid input for 'operation' appearing and using && operator works fine??
-
-    if (operation != "add" && operation != "subtract" && operation != "multiply" && operation != "divide" && operation != "modulo")
-    {
-      await context.Response.WriteAsync("Invalid input for 'operation'");
-      return;
-    }
-
-
-    if (!int.TryParse(firstNumber, out int firstNum))
-    {
-      await context.Response.WriteAsync("Invalid input for 'firstNumber'");
-      return;
-    }
-    else if (!int.TryParse(secondNumber, out int secondNum))
-    {
-      await context.Response.WriteAsync("Invalid input for 'secondNumber'");
-      return;
+      if (!String.IsNullOrEmpty(firstNumberQuery))
+      {
+        firstNumber = int.Parse(firstNumberQuery);
+      }
+      else
+      {
+        if (response.StatusCode == 200)
+        {
+          response.StatusCode = 400;
+          await response.WriteAsync("Invalid input for 'firstNumber'");
+        }
+      }
     }
     else
     {
-      switch (operation)
+      if (response.StatusCode == 200)
       {
-        case "add":
-          result = firstNum + secondNum;
-          break;
-        case "subtract":
-          result = firstNum - secondNum;
-          break;
-        case "multiply":
-          result = firstNum * secondNum;
-          break;
-        case "divide":
-          result = firstNum / secondNum;
-          break;
-        case "modulo":
-          result = firstNum % secondNum;
-          break;
-        default:
-          await context.Response.WriteAsync("Unknown operation!");
-          break;
+        response.StatusCode = 400;
+        await response.WriteAsync("Invalid input for 'firstNumber'");
       }
-
-      await context.Response.WriteAsync($"Result is: {result}");
     }
 
+    // 'secondNumber' check and assignment
+
+    if (request.Query.ContainsKey("secondNumber"))
+    {
+      string? secondNumberQuery = request.Query["secondNumber"][0];
+
+      if (!String.IsNullOrEmpty(secondNumberQuery))
+      {
+        secondNumber = int.Parse(secondNumberQuery);
+      }
+      else
+      {
+        if (response.StatusCode == 200)
+        {
+          response.StatusCode = 400;
+          await response.WriteAsync("Invalid input for 'secondNumber'");
+        }
+      }
+    }
+    else
+    {
+      if (response.StatusCode == 200)
+      {
+        response.StatusCode = 400;
+        await response.WriteAsync("Invalid input for 'secondNumber'");
+      }
+    }
+
+    // operation
+    if (request.Query.ContainsKey("operation"))
+    {
+      operation = request.Query["operation"][0]?.ToString();
+
+      if (!String.IsNullOrEmpty(operation))
+      {
+        switch (operation)
+        {
+          case "add": result = firstNumber + secondNumber; break;
+          case "subtract": result = firstNumber - secondNumber; break;
+          case "multiply": result = firstNumber * secondNumber; break;
+          case "divide": result = secondNumber != 0 ? firstNumber / secondNumber : 0; break;
+          case "modulo": result = secondNumber != 0 ? firstNumber % secondNumber : 0; break;
+        }
+      }
+      else
+      {
+        if (response.StatusCode == 200)
+        {
+          response.StatusCode = 400;
+          await response.WriteAsync("Invalid input for 'operation'");
+        }
+      }
+
+      await response.WriteAsync($"Result is: {result}");
+    }
+    else
+    {
+      if (response.StatusCode == 200)
+      {
+        response.StatusCode = 400;
+        await response.WriteAsync("Invalid input for 'operation'");
+      }
+    }
   }
 });
 
