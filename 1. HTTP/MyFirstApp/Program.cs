@@ -4,10 +4,10 @@ var app = builder.Build();
 app.Run(async (HttpContext context) =>
 {
   context.Response.Headers["Content-Type"] = "text/html";
-  if (context.Request.Headers.ContainsKey("User-Agent"))
+  if (context.Request.Headers.ContainsKey("AuthorizationKey"))
   {
-    string? userAgent = context.Request.Headers["User-Agent"];
-    await context.Response.WriteAsync($"<h1>{userAgent}</h1>");
+    string? authKey = context.Request.Headers["AuthorizationKey"];
+    await context.Response.WriteAsync($"<h1>{authKey}</h1>");
   }
 
 });
