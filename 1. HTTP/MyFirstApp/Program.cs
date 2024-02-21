@@ -3,22 +3,11 @@ var app = builder.Build();
 
 app.Run(async (HttpContext context) =>
 {
-  // 1xx Informational: 
-  //    101 - Switching Protocols
-  // 2xx Success:
-  //    200 - OK
-  // 3xx Redirection:
-  //    302 - Found
-  //    304 - Not Modified
-  // 4xx Client error:
-  //    400 - Bad Request
-  //    401 - Unauthorized
-  //    404 - Not Found
-  // 5xx Server error:
-  //    500 Internal Server Error
-  context.Response.StatusCode = 400;
-  await context.Response.WriteAsync("Hello");
-  await context.Response.WriteAsync("World");
+  context.Response.Headers["MyKey"] = "My Value";
+  context.Response.Headers["Server"] = "My Server (Kestrel)";
+  context.Response.Headers["Content-Type"] = "text/html";
+  await context.Response.WriteAsync("<h1>Hello World!</h1>");
+  await context.Response.WriteAsync("<h2>This is Content-Type of text/html.</h2>");
 });
 
 app.Run();
