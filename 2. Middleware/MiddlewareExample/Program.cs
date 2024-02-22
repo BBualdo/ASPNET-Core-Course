@@ -4,18 +4,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<CustomMiddleware>();
 var app = builder.Build();
 
-// Recommended Middleware Order
-app.UseExceptionHandler("/Error");
-app.UseHsts();
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseCors();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseSession();
-app.MapControllers();
-// add custom middlewares
+//// Recommended Middleware Order
+//app.UseExceptionHandler("/Error");
+//app.UseHsts();
+//app.UseHttpsRedirection();
+//app.UseStaticFiles();
+//app.UseRouting();
+//app.UseCors();
+//app.UseAuthentication();
+//app.UseAuthorization();
+//app.UseSession();
+//app.MapControllers();
+//// add custom middlewares
 
 // middleware 1
 app.Use(async (HttpContext context, RequestDelegate next) =>
@@ -28,6 +28,17 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 // middleware 2
 //app.UseMiddleware<CustomMiddleware>();
 app.UseCustomMiddleware();
+
+app.UseWhen((HttpContext context) => context.Request.Query.ContainsKey("username"),
+  (IApplicationBuilder app) =>
+  {
+    app.Use(async (context, next) =>
+    {
+      string? username = context.Request.Query["username"];
+      await context.Response.WriteAsync($"Your username is: {username}\n");
+      await next();
+    });
+  });
 
 // middleware 3
 app.UseGreetingCustomMiddleware();
