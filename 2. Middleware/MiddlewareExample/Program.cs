@@ -16,7 +16,10 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 //app.UseMiddleware<CustomMiddleware>();
 app.UseCustomMiddleware();
 
-// middleware 3 (terminating middleware)
+// middleware 3
+app.UseGreetingCustomMiddleware();
+
+// middleware 4 (terminating middleware)
 app.Run(async (HttpContext context) =>
 {
   await context.Response.WriteAsync("Middleware 3 - Start\n");
