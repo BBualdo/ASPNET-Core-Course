@@ -4,6 +4,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<CustomMiddleware>();
 var app = builder.Build();
 
+// Recommended Middleware Order
+app.UseExceptionHandler("/Error");
+app.UseHsts();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseCors();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseSession();
+app.MapControllers();
+// add custom middlewares
+
 // middleware 1
 app.Use(async (HttpContext context, RequestDelegate next) =>
 {
