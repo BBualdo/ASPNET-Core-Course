@@ -1,52 +1,28 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.Use(async (context, next) =>
-{
-  // endpoint will be null here, because it is called before UseRouting()
-  Endpoint? endpoint = context.GetEndpoint();
-  if (endpoint != null)
-  {
-    await context.Response.WriteAsync($"Endpoint: {endpoint.DisplayName}\n");
-  }
-  await next();
-});
 
 // enable routing
 app.UseRouting();
 
-app.Use(async (context, next) =>
-{
-  Endpoint? endpoint = context.GetEndpoint();
-  if (endpoint != null)
-  {
-    await context.Response.WriteAsync($"Endpoint: {endpoint.DisplayName}\n");
-  }
-  await next();
-});
-
-// creating endpoints (optional in top-level statement)
+#pragma warning disable ASP0014 // Suggest using top level route registrations
 app.UseEndpoints(endpoints =>
-{ });
-
-// add your endpoints
-app.Map("home", async (context) =>
+{
+  // add your endpoints (must use when not in MinimalAPI)
+  endpoints.Map("files/{filename}.{extension}", async context =>
   {
-    await context.Response.WriteAsync("Home page");
+    string? fileName = Convert.ToString(context.Request.RouteValues["filename"]);
+    string? extension = Convert.ToString(context.Request.RouteValues["extension"]);
+    await context.Response.WriteAsync($"Accessing file: {fileName}.{extension}");
   });
 
-// Executes only for GET HTTP method
-app.MapGet("about", async (context) =>
-{
-  await context.Response.WriteAsync("About page");
+  endpoints.Map("employee/profile/{employeename}", async context =>
+  {
+    string? employeeName = Convert.ToString(context.Request.RouteValues["employeename"]);
+    await context.Response.WriteAsync($"Accesing {employeeName} employee profile.");
+  });
 });
-
-// Executes only for POST HTTP method
-app.MapPost("randompage", async context =>
-{
-  await context.Response.WriteAsync("Random Page");
-});
-
+#pragma warning restore ASP0014 // Suggest using top level route registrations
 
 app.Run(async context =>
 {
