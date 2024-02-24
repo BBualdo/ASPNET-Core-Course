@@ -48,6 +48,12 @@ app.UseEndpoints(endpoints =>
     DateTime reportDate = Convert.ToDateTime(context.Request.RouteValues["datetime"]);
     await context.Response.WriteAsync($"Daily report for date: {reportDate.ToShortDateString()}");
   });
+
+  endpoints.Map("cities/{cityid:guid}", async context =>
+  {
+    Guid id = Guid.Parse(Convert.ToString(context.Request.RouteValues["cityid"])!);
+    await context.Response.WriteAsync($"Displaying city with coresponding ID: {id}");
+  });
 });
 #pragma warning restore ASP0014 // Suggest using top level route registrations
 
