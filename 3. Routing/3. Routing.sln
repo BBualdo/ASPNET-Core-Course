@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoutingExample", "RoutingEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticFilesExample", "StaticFilesExample\StaticFilesExample.csproj", "{73A027D2-D52B-4213-87DB-A26857EA7C8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountriesRouting", "CountriesRouting\CountriesRouting.csproj", "{ED5727B0-76E2-4B20-9C7F-B22BC422CF39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{73A027D2-D52B-4213-87DB-A26857EA7C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73A027D2-D52B-4213-87DB-A26857EA7C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73A027D2-D52B-4213-87DB-A26857EA7C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED5727B0-76E2-4B20-9C7F-B22BC422CF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED5727B0-76E2-4B20-9C7F-B22BC422CF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED5727B0-76E2-4B20-9C7F-B22BC422CF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED5727B0-76E2-4B20-9C7F-B22BC422CF39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
