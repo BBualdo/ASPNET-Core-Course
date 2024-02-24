@@ -81,8 +81,12 @@ app.UseEndpoints(endpoints =>
     {
       await context.Response.WriteAsync($"{month} is unavailable for Sales report.");
     }
+  });
 
-
+  // More specificity because of literal values in path
+  endpoints.Map("sales-report/2024/jan", async context =>
+  {
+    await context.Response.WriteAsync("Sales report exclusively for JAN 2024");
   });
 });
 #pragma warning restore ASP0014 // Suggest using top level route registrations
