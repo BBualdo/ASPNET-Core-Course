@@ -1,6 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using RoutingExample.CustomContstraints;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRouting(options =>
+{
+  options.ConstraintMap.Add("months", typeof(MonthCustomConstraint));
+});
+
+var app = builder.Build();
 
 // enable routing
 app.UseRouting();
@@ -61,7 +67,7 @@ app.UseEndpoints(endpoints =>
     await context.Response.WriteAsync($"Username is {username}");
   });
 
-  endpoints.Map("sales-report/{year:int:min(1900)}/{month:regex(^(jan|apr|jul|oct)$)}", async context =>
+  endpoints.Map("sales-report/{year:int:min(1900)}/{month:months}", async context =>
   {
     string? year = (string?)context.Request.RouteValues["year"];
     string? month = (string?)context.Request.RouteValues["month"];
