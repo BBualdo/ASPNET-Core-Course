@@ -28,10 +28,29 @@ namespace ControllersExample.Controllers
       return Json(person);
     }
 
-    [Route("contact-us/{mobile:regex(^\\d{{10}}$)}")]
-    public string Contact()
+    [Route("download-virtual")]
+    public VirtualFileResult VirtualDownload()
     {
-      return "Hello from Contact Page";
+      // return new VirtualFileResult("/sample.pdf", "application/pdf");
+      // or 
+      return File("/sample.pdf", "application/pdf");
+    }
+
+    [Route("download-physical")]
+    public PhysicalFileResult PhysicalDownload()
+    {
+      // return new PhysicalFileResult(@"C:\Users\soapm\Desktop\CSS Selector Cheat Sheet - Dark.pdf", "application/pdf");
+      // or 
+      return PhysicalFile(@"C:\Users\soapm\Desktop\CSS Selector Cheat Sheet - Dark.pdf", "application/pdf");
+    }
+
+    [Route("download-file-content")]
+    public FileContentResult FileContentDownload()
+    {
+      byte[] bytes = System.IO.File.ReadAllBytes(@"C:\Users\soapm\Desktop\CSS Selector Cheat Sheet - Dark.pdf");
+      // return new FileContentResult(bytes, "application/pdf");
+      // or
+      return File(bytes, "application/pdf");
     }
   }
 }

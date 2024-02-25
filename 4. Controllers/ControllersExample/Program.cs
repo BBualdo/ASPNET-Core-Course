@@ -8,5 +8,6 @@ var app = builder.Build();
 // you can shortcut it with:
 
 app.MapControllers();
+app.UseStaticFiles();
 
 app.Run();
