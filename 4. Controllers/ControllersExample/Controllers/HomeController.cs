@@ -2,7 +2,8 @@
 
 namespace ControllersExample.Controllers
 {
-  public class HomeController
+  [Controller] // You have to use this attribute
+  public class HomeController // or Controller suffix in class name
   {
     [Route("/")] // Attribute Routing
     [Route("home")]
