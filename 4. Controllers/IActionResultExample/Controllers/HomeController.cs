@@ -2,7 +2,8 @@
 
 namespace IActionResultExample.Controllers
 {
-  [Route("/books/")]
+  // Let's assume, the URL has changed from books to store/books
+  [Route("books")]
   public class HomeController : Controller
   {
     public IActionResult Index()
@@ -49,7 +50,10 @@ namespace IActionResultExample.Controllers
           return NotFound("Book ID can't be higher than 1000.");
         }
 
-        return File("/sample.txt", "text/plain");
+        //return new RedirectToActionResult("Books", "Store", new { }); // 302 - Found
+        return new RedirectToActionResult("Books", "Store", new { }, true); // 301 - Moved Permanent
+
+        // The difference is in case of 301 the browsers and search engines will remember that URL has changed and replace it for example in client's bookmarks
       }
       else
       {
