@@ -51,9 +51,36 @@ namespace IActionResultExample.Controllers
         }
 
         //return new RedirectToActionResult("Books", "Store", new { }); // 302 - Found
-        return new RedirectToActionResult("Books", "Store", new { }, true); // 301 - Moved Permanent
+        //or
+        //return RedirectToAction("Books", "Store", new { id = bookId });
+
+        //or if permament
+
+        //return new RedirectToActionResult("Books", "Store", new { }, true); // 301 - Moved Permanent
+        //or
+        //return RedirectToActionPermanent("Books", "Store", new { id = bookId });
 
         // The difference is in case of 301 the browsers and search engines will remember that URL has changed and replace it for example in client's bookmarks
+
+
+        // ------------------------ InvalidOperationException: The supplied URL is not local. A URL with an absolute path is considered local if it does not have a host/authority part. URLs using virtual paths ('~/') are also local. --------------------------
+        //return new LocalRedirectResult($"store/books/{bookId}");
+        //or
+        return LocalRedirect($"store/books/{bookId}");
+
+        //or if permanent
+
+        //return new LocalRedirectResult($"store/books/{bookId}", true);
+        //or
+        //return LocalRedirectPermanent($"store/books/{bookId}");
+
+        // local redirect lets only for redirection in range of the same app, when by redirecting to action you can redirect to another application or website, like Facebook, YouTube, etc. 
+
+        // -------------------------------------------------------------------------------------------------------------
+
+        //return Redirect($"store/books/{bookId}");
+        //or 
+        //return RedirectPermanent($"store/books/{bookId}");
       }
       else
       {
