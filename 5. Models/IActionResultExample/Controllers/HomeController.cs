@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModelBindingExample.Models;
 
 namespace ModelBindingExample.Controllers
 {
@@ -8,8 +9,8 @@ namespace ModelBindingExample.Controllers
   [Route("books/{bookid?}/{isloggedin?}")]
   public class HomeController : Controller
   {
-    public IActionResult Index([FromRoute] int? bookid, [FromQuery] bool? isloggedin)
-    // books/10/true?bookid=20&isloggedin=false => bookid = 10, isloggedin = false
+    public IActionResult Index(int? bookid, bool? isloggedin, Book book)
+    // Model Binding Automatically sets properties of a Model class based on names of query strings or route data
     {
       // Check if isLoggedIn is true
       if (isloggedin == false)
@@ -35,7 +36,7 @@ namespace ModelBindingExample.Controllers
           return NotFound("Book ID can't be higher than 1000.");
         }
 
-        return Content($"Book ID: {bookid}", "text/plain");
+        return Content($"{book}", "text/plain");
       }
       else
       {
