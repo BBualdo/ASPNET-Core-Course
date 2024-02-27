@@ -2,8 +2,8 @@
 
 namespace ModelBindingExample.Controllers
 {
-  // Let's assume, the URL has changed from books to store/books
-  [Route("books")]
+  // books/59/true?isloggedin=false&bookid=44 => Route Parameters have more priority than Query String so bookid = 59, isloggedin = true
+  [Route("books/{bookid?}/{isloggedin?}")]
   public class HomeController : Controller
   {
     public IActionResult Index(int? bookid, bool? isloggedin) // Model Binding occurs between Request and Action, so values will be fetched automatically
