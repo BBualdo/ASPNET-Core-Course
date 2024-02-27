@@ -3,10 +3,13 @@
 namespace ModelBindingExample.Controllers
 {
   // books/59/true?isloggedin=false&bookid=44 => Route Parameters have more priority than Query String so bookid = 59, isloggedin = true
+
+  // But when [From...] attribute is used it has higher priority
   [Route("books/{bookid?}/{isloggedin?}")]
   public class HomeController : Controller
   {
-    public IActionResult Index(int? bookid, bool? isloggedin) // Model Binding occurs between Request and Action, so values will be fetched automatically
+    public IActionResult Index([FromRoute] int? bookid, [FromQuery] bool? isloggedin)
+    // books/10/true?bookid=20&isloggedin=false => bookid = 10, isloggedin = false
     {
       // Check if isLoggedIn is true
       if (isloggedin == false)
