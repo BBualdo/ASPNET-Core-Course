@@ -4,8 +4,9 @@ namespace ModelValidationExample.Models
 {
   public class Person
   {
-    [Required] // This is model validation attribute
+    [Required(ErrorMessage = "Please enter your name.")] // This is model validation attribute
     public string Name { get; set; }
+    [Required]
     public string? Email { get; set; }
     public string? Phone { get; set; }
     public string? Password { get; set; }
