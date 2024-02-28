@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ModelBindingExample.Models
+﻿namespace ModelBindingExample.Models
 {
   public class Book
   {
-    [FromQuery]
+    // [FromRoute]
     public int Bookid { get; set; }
-    [FromQuery]
     public string? Author { get; set; }
 
     public override string ToString()

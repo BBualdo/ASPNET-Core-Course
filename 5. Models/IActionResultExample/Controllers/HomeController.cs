@@ -3,14 +3,11 @@ using ModelBindingExample.Models;
 
 namespace ModelBindingExample.Controllers
 {
-  // books/59/true?isloggedin=false&bookid=44 => Route Parameters have more priority than Query String so bookid = 59, isloggedin = true
-
-  // But when [From...] attribute is used it has higher priority
+  // POST Request x-www-form-urlencoded and form-data has highest priority
   [Route("books/{bookid?}/{isloggedin?}")]
   public class HomeController : Controller
   {
     public IActionResult Index(int? bookid, bool? isloggedin, Book book)
-    // Model Binding Automatically sets properties of a Model class based on names of query strings or route data
     {
       // Check if isLoggedIn is true
       if (isloggedin == false)
