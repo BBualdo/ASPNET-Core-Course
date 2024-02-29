@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using ModelValidationExample.Custom_Validators;
+﻿using ModelValidationExample.Custom_Validators;
 using System.ComponentModel.DataAnnotations;
 
 namespace ModelValidationExample.Models
@@ -33,7 +32,7 @@ namespace ModelValidationExample.Models
 
     [MinimumYear(2000)]
     [MaximumYear(1965)]
-    [BindNever] // It won't be included in Model Binding
+    //[BindNever] // It won't be included in Model Binding
     public DateTime? DateOfBirth { get; set; }
 
     public int? Age { get; set; }

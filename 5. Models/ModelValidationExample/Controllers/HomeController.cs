@@ -16,7 +16,7 @@ namespace ModelValidationExample.Controllers
 
 
     // [ModelBinder(typeof(PersonModelBinder))]
-    public IActionResult Index(Person person)
+    public IActionResult Index(Person person, [FromHeader(Name = "User-Agent")] string UserAgent)
     {
       // ModelState contains properties like IsValid, Values or ErrorCount. We can use them for validation.
 
@@ -37,7 +37,7 @@ namespace ModelValidationExample.Controllers
         return BadRequest(errors);
       }
 
-      return Content($"{person}");
+      return Content($"{person}, User-Agent: {UserAgent}");
     }
   }
 }
