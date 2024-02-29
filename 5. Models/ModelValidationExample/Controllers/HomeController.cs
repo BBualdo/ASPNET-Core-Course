@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModelValidationExample.CustomModelBinders;
 using ModelValidationExample.Models;
 
 namespace ModelValidationExample.Controllers
@@ -13,7 +14,7 @@ namespace ModelValidationExample.Controllers
          <Age>24</Age>
        </Person>
     */
-    public IActionResult Index([FromBody] Person person)
+    public IActionResult Index([FromBody][ModelBinder(typeof(PersonModelBinder))] Person person)
     {
       // ModelState contains properties like IsValid, Values or ErrorCount. We can use them for validation.
 
