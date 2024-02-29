@@ -6,8 +6,13 @@ namespace ModelValidationExample.Controllers
   public class HomeController : Controller
   {
     [Route("register")]
-    // Postman: POST > Body > Raw (JSON) =
-    /* { "Name": "Sebastian", "Email": "bbualdo@example.com", "Phone": "123456789" }*/
+    // Postman: POST > Body > Raw (XML) =
+    /* <Person>
+         <Name>BBualdo</Name>
+         <Email>bbualdo@example.com</Email>
+         <Age>24</Age>
+       </Person>
+    */
     public IActionResult Index([FromBody] Person person)
     {
       // ModelState contains properties like IsValid, Values or ErrorCount. We can use them for validation.
