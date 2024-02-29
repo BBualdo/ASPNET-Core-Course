@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ModelValidationExample.Models
 {
-  public class Person
+  public class Person : IValidatableObject
   {
     [Required(ErrorMessage = "{0} is required.")] // This is model validation attribute
     [Display(Name = "Person Name")]
@@ -34,6 +34,8 @@ namespace ModelValidationExample.Models
     [MaximumYear(1965)]
     public DateTime? DateOfBirth { get; set; }
 
+    public int? Age { get; set; }
+
     public DateTime? FromDate { get; set; }
 
     // From Date cannot be newer than ToDate
@@ -50,6 +52,16 @@ namespace ModelValidationExample.Models
         $"Confirm Password:\t{ConfirmPassword}\n" +
         $"Price:\t${Price}\n" +
         $"Date of Birth:\t{DateOfBirth}\n";
+    }
+
+    // internal Validation, not reusable, runs only when not mentioned properties are without errors
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+      if (DateOfBirth.HasValue == false && Age.HasValue == false)
+      {
+        // yield keyword lets you to return more than one value
+        yield return new ValidationResult("Either Date of Birth or Age should be specified!", [nameof(Age)]);
+      }
     }
   }
 }
