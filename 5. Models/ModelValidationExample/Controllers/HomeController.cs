@@ -6,7 +6,9 @@ namespace ModelValidationExample.Controllers
   public class HomeController : Controller
   {
     [Route("register")]
-    public IActionResult Index(Person person)
+    public IActionResult Index(
+      /*[Bind(nameof(Person.Name), nameof(Person.Email), nameof(Person.Password), nameof(Person.ConfirmPassword))]*/ // Model Binding binds only mentioned props
+      Person person)
     {
       // ModelState contains properties like IsValid, Values or ErrorCount. We can use them for validation.
 
