@@ -34,6 +34,12 @@ namespace ModelValidationExample.Models
     [MaximumYear(1965)]
     public DateTime? DateOfBirth { get; set; }
 
+    public DateTime? FromDate { get; set; }
+
+    // From Date cannot be newer than ToDate
+    [DateRange("FromDate", ErrorMessage = "'From Date' can't be later date than 'To Date'.")]
+    public DateTime? ToDate { get; set; }
+
     public override string ToString()
     {
       return $"Person object:\n\n" +
