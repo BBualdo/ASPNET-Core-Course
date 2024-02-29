@@ -44,6 +44,8 @@ namespace ModelValidationExample.Models
     [DateRange("FromDate", ErrorMessage = "'From Date' can't be later date than 'To Date'.")]
     public DateTime? ToDate { get; set; }
 
+    public List<string?> Tags { get; set; } = new List<string?>();
+
     public override string ToString()
     {
       return $"Person object:\n\n" +
