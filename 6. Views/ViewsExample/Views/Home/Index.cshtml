@@ -1,7 +1,7 @@
 ﻿@using ViewsExample.Models;
 @{
     string appTitle = "ASP.NET Core Web Application";
-    Person me = new Person("Sebastian", new DateTime(2000, 5, 23));
+    Person me = new Person("Sebastian" /* new DateTime(2000, 5, 23) */);
 }
 
 <!DOCTYPE html>
@@ -17,10 +17,14 @@
         <div>
             <h2>Here is a Person object:</h2>
             <p>Name: @me.Name</p>
-        @{
-            double age = Math.Round((DateTime.Now - me.DateOfBirth).TotalDays / 365.25);
-        }
+        @if (me.DateOfBirth != null) {
+            double age = Math.Round((DateTime.Now - me.DateOfBirth).Value.TotalDays / 365.25);
             <p>You are @age years old.</p>
+        } else
+        {
+            <p>Date of Birth is unknown.</p>
+        }
+
         </div>
     </body>
 </html>
