@@ -9,7 +9,6 @@ namespace BankingAppExercise.Controllers
     [Route("account-details")]
     public IActionResult AccountDetails()
     {
-
       return Json(account1);
     }
 
