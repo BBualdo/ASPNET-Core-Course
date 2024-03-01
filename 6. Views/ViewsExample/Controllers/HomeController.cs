@@ -2,12 +2,13 @@
 
 namespace ViewsExample.Controllers
 {
-  public class HomeController : Controller
-  {
-    [Route("home")]
-    public IActionResult Index()
+    public class HomeController : Controller
     {
-      return View(); // searches for Views/Home/Index.cshtml
+        [Route("home")]
+        [Route("/")]
+        public IActionResult Index()
+        {
+            return View(); // searches for Views/Home/Index.cshtml
+        }
     }
-  }
 }

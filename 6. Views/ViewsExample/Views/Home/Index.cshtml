@@ -1,12 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@using ViewsExample.Models;
+@{
+    string appTitle = "ASP.NET Core Web Application";
+    Person me = new Person("Sebastian", new DateTime(2000, 5, 23));
+}
+
+<!DOCTYPE html>
 <html>
     <head>
-        <title>ASP.NET Core Web Application</title>
+        <title>@appTitle</title>
         <meta charset="utf-8" />
     </head>
     <body>
         <h1>This is my first View Page.</h1>
         <p>I'm currently learning concept of Views.</p>
         <p>This is the last element of <span>MVC</span>.</p>
+        <div>
+            <h2>Here is a Person object:</h2>
+            <p>Name: @me.Name</p>
+        @{
+            double age = Math.Round((DateTime.Now - me.DateOfBirth).TotalDays / 365.25);
+        }
+            <p>You are @age years old.</p>
+        </div>
     </body>
 </html>
