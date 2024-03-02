@@ -38,6 +38,13 @@
         <ul>
             @for (int i = 0; i < 2; i++)
             {
+                // static text can be written like this:
+                @: I
+                // or
+                <text>like</text>
+
+                // Razor Comment:
+                @*this is a comment*@
                 string hobby = me.Hobbies[i];
 
                 <li>@hobby</li>
