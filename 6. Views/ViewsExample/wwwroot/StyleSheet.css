@@ -1,0 +1,29 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(33, 33, 33);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.heading {
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0,66);
+    text-align: center;
+    padding: 20px 40px;
+}
+
+.people {
+    border: 1px solid gold;
+    background-color: rgba(191, 170, 0, 0,1);
+    padding: 40px 80px;
+    text-align: center;
+}
