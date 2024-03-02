@@ -4,19 +4,23 @@
     {
         public string Name { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public List<string> Hobbies { get; set; }
+        public Gender PersonGender { get; set; }
 
         public Person(string name)
         {
             Name = name;
         }
 
-        public Person(string name, DateTime? dateOfBirth, List<string> hobbies)
+        public Person(string name, DateTime? dateOfBirth, Gender gender)
         {
             Name = name;
             DateOfBirth = dateOfBirth;
-            Hobbies = hobbies;
-            Hobbies = hobbies;
+            PersonGender = gender;
+        }
+
+        public enum Gender
+        {
+            Male, Female, Other
         }
     }
 }
