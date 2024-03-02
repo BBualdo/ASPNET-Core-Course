@@ -16,7 +16,8 @@ namespace ViewsExample.Controllers
                 new Person("Asia", new DateTime(1999, 04, 30), Person.Gender.Female),
                 new Person("Dominik", DateTime.Now, Person.Gender.Male)
             };
-            ViewData["people"] = people;
+            // ViewData["people"] = people;
+            ViewBag.people = people;
 
             return View();
         }

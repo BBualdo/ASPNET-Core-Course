@@ -1,7 +1,4 @@
 ﻿@using ViewsExample.Models;
-@{
-    List<Person>? people = (List<Person>?)ViewData["people"];
-}
 
 @{
     string GetAge(Person person)
@@ -18,7 +15,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>@ViewData["appTitle"]</title>
+        <title>@ViewBag.appTitle</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="~/StyleSheet.css" />
     </head>
@@ -31,7 +28,7 @@
         <div class="people">
             <h2>Ludziki:</h2>
        
-        @foreach (Person person in people)
+        @foreach (Person person in ViewBag.people)
         {
             <h4>@GetAge(person)</h4>
         }
