@@ -1,7 +1,7 @@
 ﻿@using ViewsExample.Models;
 @{
     string appTitle = "ASP.NET Core Web Application";
-    Person me = new Person("Sebastian", new DateTime(2000, 5, 23));
+    Person me = new Person("Sebastian", new DateTime(2000, 5, 23), new List<string> {"Coding", "Playing games", "Music making"});
     double age = Math.Round(((DateTime.Now - me.DateOfBirth!).Value.TotalDays) / 365.25);
 }
 
@@ -33,6 +33,14 @@
                 <h4>You are senior.</h4>
                 break;
         }
+
+        <h3>Your hobbies are:</h3>
+        <ul>
+            @foreach (string hobby in me.Hobbies)
+            {
+                <li>@hobby</li>
+            }
+        </ul>
         </div>
     </body>
 </html>
