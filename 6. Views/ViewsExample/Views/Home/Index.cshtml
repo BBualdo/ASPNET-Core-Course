@@ -10,7 +10,7 @@
     };
 }
 
-@*Optionally you can add @functions. Then the functions are methods, variables are fields and you can add properties, because Views are C# classes overall.*@
+
 @{
     string GetAge(Person person)
     {
@@ -21,6 +21,8 @@
         }
         return $"{person.Name}'s date of birth is unknown.";
     }
+
+    string alertMessage = $"<script>alert('There is {people.Count} people here.')</script>";
 }
 
 <!DOCTYPE html>
@@ -39,5 +41,6 @@
             <h4>@GetAge(person)</h4>
         }
         </div>
+        @Html.Raw(alertMessage);
     </body>
 </html>
