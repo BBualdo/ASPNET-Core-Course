@@ -1,0 +1,53 @@
+﻿@model City
+
+@{
+  string GetColor(int temperature)
+  {
+    if (temperature < 15)
+    {
+      return "ice";
+    }
+    else if (temperature < 30)
+    {
+      return "warm";
+    }
+    else
+    {
+      return "hot";
+    }
+  }
+}
+
+<!DOCTYPE
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>WeatherApp | Details</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="~/StyleSheet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="~/DotNet.svg" />
+</head>
+<body>
+  <header>
+    <h1>Weather App</h1>
+  </header>
+  <main>
+    <a href=".." class="back__button">Back to Cities</a>
+    <div class="weather-card__outer">
+      <div class="weather-card__inner">
+        <div class="card-left">
+          <p class="city-name">@Model.Name</p>
+        <p class="date">@Model.Date.ToShortTimeString()</p>
+        </div>
+        <div class="card-right">
+          <p class="temperature">
+          <span class=@GetColor(Model.TemperatureCelcius)>@Model.TemperatureCelcius</span>&#176;C
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
