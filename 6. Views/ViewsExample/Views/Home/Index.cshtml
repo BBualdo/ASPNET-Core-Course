@@ -1,0 +1,38 @@
+﻿@model List<Person>;
+
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>@ViewBag.appTitle</title>
+      <meta charset="utf-8" />
+      <link rel="stylesheet" href="~/StyleSheet.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <header class="headbar">
+        <h1>Person Model Object Table</h1>
+      </header>
+      <main>
+        <table>
+          <tr class="head-row">
+            <td>Name</td>
+            <td>Date of Birth</td>
+            <td>Gender</td>
+            <td></td>
+          </tr>
+          @foreach (Person person in Model)
+          {
+          <tr class="content-row">
+              <td>@person.Name</td>
+              <td>@person.DateOfBirth?.ToShortDateString()</td>
+              <td>@person.PersonGender</td>
+              <td class="details__button"><a href="/details/@person.Name">Details</a></td>
+          </tr>
+          }
+        </table>
+        <a href="/wishlist" class="back__button mt-40">Switch to Person & Product Model View</a>
+      </main>
+    </body>
+</html>
