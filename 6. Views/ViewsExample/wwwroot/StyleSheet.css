@@ -102,3 +102,7 @@ td {
     border-color: #8f00ff;
     color: #8f00ff;
   }
+
+  .mt-40 {
+    margin-top: 40px;
+  }
