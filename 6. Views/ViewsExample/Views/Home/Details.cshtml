@@ -1,0 +1,38 @@
+﻿@using ViewsExample.Models;
+@model Person;
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@Model.Name Details</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="~/StyleSheet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="headbar">
+    <h1>Person Model Object Table</h1>
+  </header>
+  <main>
+    <div class="back__button-container">
+      <a href="/" class="back__button">Back</a>
+    </div>
+   
+    <table>
+      <tr class="head-row">
+        <td>Name</td>
+        <td>Date of Birth</td>
+        <td>Gender</td>
+      </tr>
+      <tr class="content-row">
+        <td>@Model.Name</td>
+        <td>@Model.DateOfBirth?.ToShortDateString()</td>
+        <td>@Model.PersonGender</td>
+      </tr>
+    </table>
+  </main>
+</body>
+</html>
+

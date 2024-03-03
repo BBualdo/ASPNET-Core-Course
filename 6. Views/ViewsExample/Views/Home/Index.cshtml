@@ -21,13 +21,15 @@
             <td>Name</td>
             <td>Date of Birth</td>
             <td>Gender</td>
+            <td></td>
           </tr>
           @foreach (Person person in Model)
           {
           <tr class="content-row">
-            <td>@person.Name</td>
-            <td>@person.DateOfBirth?.ToShortDateString()</td>
-            <td>@person.PersonGender</td>
+              <td>@person.Name</td>
+              <td>@person.DateOfBirth?.ToShortDateString()</td>
+              <td>@person.PersonGender</td>
+              <td class="details__button"><a href="/details/@person.Name">Details</a></td>
           </tr>
           }
         </table>
