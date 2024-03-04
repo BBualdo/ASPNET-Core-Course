@@ -12,6 +12,10 @@ body {
   min-height: 100vh;
 }
 
+main {
+  min-height: 100vh;
+}
+
 header {
   background: linear-gradient(90deg, rgba(149,87,255,1) 32%, rgba(91,0,255,1) 100%);
   padding: 20px 10px;
@@ -95,4 +99,11 @@ header > ul > li > a:hover, .sidebar > ul > li > a:hover {
 
 .sidebar__body {
   display:flex;
+}
+
+footer {
+  padding: 20px;
+  width: 100%;
+  background: rgba(91,0,255,1);
+  color: white;
 }
