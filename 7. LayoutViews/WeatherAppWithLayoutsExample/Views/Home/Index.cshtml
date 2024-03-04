@@ -1,0 +1,38 @@
+﻿@model List<City>
+
+@{
+  string GetColor(int temperature)
+  {
+    if (temperature < 15)
+    {
+      return "ice";
+    }
+    else if (temperature < 30)
+    {
+      return "warm";
+    }
+    else
+    {
+      return "hot";
+    }
+  }
+}
+
+@foreach (City city in Model)
+{
+  <a class="text-normal" href="/details/@city.UniqueCode">
+    <div class="weather-card__outer">
+      <div class="weather-card__inner">
+        <div class="card-left">
+          <p class="city-name">@city.Name</p>
+          <p class="date">@city.Date.ToShortTimeString()</p>
+        </div>
+        <div class="card-right">
+          <p class="temperature">
+            <span class=@GetColor(city.TemperatureCelcius)>@city.TemperatureCelcius</span>&#176;C
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+}
