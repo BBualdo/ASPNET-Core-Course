@@ -1,5 +1,9 @@
 ﻿@{
-  Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+  if (ViewBag.ProductId != null)
+  {
+    Layout = "~/Views/Shared/_SidebarLayout.cshtml";
+  }
+  
   ViewBag.appTitle = "Search";
 }
 
