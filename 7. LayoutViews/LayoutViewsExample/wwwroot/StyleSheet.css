@@ -1,0 +1,70 @@
+﻿* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Kanit", sans-serif;
+}
+
+:root {
+  --purple: #5b00ff;
+}
+
+header {
+  background: linear-gradient(90deg, rgba(149,87,255,1) 32%, rgba(91,0,255,1) 100%);
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header > a {
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+header > a:hover {
+  transform: scale(1.05);
+}
+
+header > ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  flex: 1 1 0%;
+  gap: 40px;
+}
+
+header > ul > li > a {
+  text-decoration-color: transparent;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-align: center;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 4px;
+  transition: all 0.2s;
+}
+
+header > ul > li > a:hover {
+  text-decoration-color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo > h1 {
+  text-transform: uppercase;
+  color: white;
+  font-weight: normal;
+}
+
+.logo > img {
+  width: 50px;
+  height: 50px;
+}
+
+body {
+}
