@@ -21,14 +21,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <header>
+<body class="sidebar__body">
+  <div class="sidebar">
     <a href="/">
       <div class="logo">
         <img src="~/DotNet.svg" alt="" />
         <h1>App</h1>
       </div>
-    </a> 
+    </a>
     <ul>
       <li><a class=@GetPath("/products") href="/products">Products</a></li>
       <li><a class=@GetPath("/search") href="/search">Search</a></li>
@@ -36,7 +36,7 @@
       <li><a class=@GetPath("/about") href="/about">About</a></li>
       <li><a class=@GetPath("/contact") href="/contact">Contact</a></li>
     </ul>
-  </header>
+  </div>
   <main>
     @RenderBody()
   </main>

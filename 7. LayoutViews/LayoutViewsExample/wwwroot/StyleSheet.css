@@ -5,7 +5,11 @@
 }
 
 :root {
-  --purple: #5b00ff;
+  --purpleLight: #dbc9ff;
+}
+
+body {
+  min-height: 100vh;
 }
 
 header {
@@ -16,16 +20,16 @@ header {
   align-items: center;
 }
 
-header > a {
+header > a, .sidebar > a {
   text-decoration: none;
   transition: transform 0.2s;
 }
 
-header > a:hover {
+header > a:hover, .sidebar > a:hover {
   transform: scale(1.05);
 }
 
-header > ul {
+header > ul, .sidebar > ul {
   display: flex;
   list-style: none;
   justify-content: center;
@@ -33,7 +37,7 @@ header > ul {
   gap: 40px;
 }
 
-header > ul > li > a {
+header > ul > li > a, .sidebar > ul > li > a {
   text-decoration-color: transparent;
   text-transform: uppercase;
   color: white;
@@ -45,7 +49,7 @@ header > ul > li > a {
   transition: all 0.2s;
 }
 
-header > ul > li > a:hover {
+header > ul > li > a:hover, .sidebar > ul > li > a:hover {
   text-decoration-color: white;
 }
 
@@ -66,5 +70,29 @@ header > ul > li > a:hover {
   height: 50px;
 }
 
-body {
+.active {
+  color: var(--purpleLight);
+  text-shadow: 0 0 3px black, 0 0 5px black;
+}
+
+.active:hover {
+  text-decoration-color: transparent;
+  cursor: default;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 200px;
+  background: linear-gradient(90deg, rgba(149,87,255,1) 32%, rgba(91,0,255,1) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar > ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__body {
+  display:flex;
 }
