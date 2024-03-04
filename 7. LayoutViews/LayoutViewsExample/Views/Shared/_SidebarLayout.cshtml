@@ -1,0 +1,44 @@
+﻿@{
+  string? GetPath(string path)
+  {
+    if (path == Context.Request.Path)
+    {
+      return "active";
+    }
+    return null;
+  }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>ASP.Net Core | @ViewBag.appTitle</title>
+  <link rel="icon" href="~/DotNet.svg" />
+  <link rel="stylesheet" href="~/StyleSheet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="sidebar__body">
+  <div class="sidebar">
+    <a href="/">
+      <div class="logo">
+        <img src="~/DotNet.svg" alt="" />
+        <h1>App</h1>
+      </div>
+    </a>
+    <ul>
+      <li><a class=@GetPath("/products") href="/products">Products</a></li>
+      <li><a class=@GetPath("/search") href="/search">Search</a></li>
+      <li><a class=@GetPath("/order") href="/order">Order</a></li>
+      <li><a class=@GetPath("/about") href="/about">About</a></li>
+      <li><a class=@GetPath("/contact") href="/contact">Contact</a></li>
+    </ul>
+  </div>
+  <main>
+    @RenderBody()
+  </main>
+</body>
+</html>
