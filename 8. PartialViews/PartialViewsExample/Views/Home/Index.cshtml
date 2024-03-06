@@ -1,16 +1,14 @@
-﻿@{
-  ListModel listModel = new ListModel();
-  listModel.ListTitle = "Countries from Model";
-  listModel.ListItems = new List<string>() {
-"USA",
-"Japan",
-"Germany",
-"France"
-};
-}
+﻿<h1>Home</h1>
+<div class="box programming-languages-content"></div>
 
+<button class="button button-blue-back">Load Programming Languages</button>
 
-<h1>Home</h1>
-<div class="box">
-  <partial name="_ListPartialView" model="listModel" />
-</div>
+<script>
+  const button = document.querySelector("button");
+  button.addEventListener("click", async () => {
+    const response = await fetch("programming-languages");
+    const languages = await response.text();
+    const placeholder = document.querySelector(".programming-languages-content");
+    placeholder.innerHTML = languages;
+  })
+</script>

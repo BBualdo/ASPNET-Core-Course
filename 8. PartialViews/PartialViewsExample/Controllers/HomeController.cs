@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PartialViewsExample.Models;
 
 public class HomeController : Controller {
 
@@ -26,5 +27,19 @@ public class HomeController : Controller {
             "Tomek"
             };
         return View();
+    }
+
+    [Route("programming-languages")]
+    public IActionResult ProgrammingLanguages() {
+        ListModel listModel = new ListModel() {
+            ListTitle = "Programming Languages",
+            ListItems = new List<string>() {
+                "JavaScript",
+                "Python",
+                "C#",
+                "Go"
+        }};
+        
+        return PartialView("_ListPartialView", listModel);
     }
 }
