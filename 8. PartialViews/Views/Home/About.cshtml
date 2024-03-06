@@ -7,6 +7,15 @@
     Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
     Lorem Ipsum.</p>
 @await Html.PartialAsync("_ListPartialView")
+
+@{
+    ViewBag.ListTitle = "Products";
+    ViewBag.ListItems = new List<string> {
+"Cars",
+"Books",
+"Sound gear"
+};
+}
 @*or*@
 @{
     @*Better Performance because it sends separately Partial View to the browser*@
