@@ -2,18 +2,15 @@
   <h3>Grid</h3>
   <table class="table w-100">
     <thead>
-      <tr>
-        <th>Sl. No</th>
-        <th>Name</th>
-      </tr>
+      <th>Country</th>
+      <th>Capital City</th>
     </thead>
-    <tr>
-      <td>1</td>
-      <td>One</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Two</td>
-    </tr>
+    @foreach (Country country in ViewBag.List)
+    {
+      <tr>
+        <td>@country.Name</td>
+        <td>@country.CapitalCity</td>
+      </tr>
+    }
   </table>
 </div>
