@@ -1,6 +1,17 @@
 @{
   ViewBag.Title = "Home page";
+
+  List<Country> countries = new List<Country>() {
+new Country("Poland", "Warszawa"),
+new Country("Greece", "Athenas"),
+new Country("Germany", "Berlin"),
+new Country("France", "Paris"),
+new Country("Spain", "Madrid")
+};
 }
 
 <h1>Home</h1>
-@await Component.InvokeAsync("Grid")
+@await Component.InvokeAsync("Grid", new
+  {
+    countries
+  })
