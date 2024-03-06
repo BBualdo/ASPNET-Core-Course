@@ -1,0 +1,6 @@
+﻿@model List<City>
+
+@foreach (City city in Model)
+{
+  await Html.RenderPartialAsync("_City", city);
+}
