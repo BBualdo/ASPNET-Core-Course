@@ -1,0 +1,16 @@
+﻿@{
+  ListModel listModel = new ListModel();
+  listModel.ListTitle = "Countries from Model";
+  listModel.ListItems = new List<string>() {
+"USA",
+"Japan",
+"Germany",
+"France"
+};
+}
+
+
+<h1>Home</h1>
+<div class="box">
+  <partial name="_ListPartialView" model="listModel" />
+</div>
