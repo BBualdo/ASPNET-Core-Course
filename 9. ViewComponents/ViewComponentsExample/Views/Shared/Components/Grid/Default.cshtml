@@ -1,3 +1,5 @@
+@model List<Country>
+
 <div class="box">
   <h3>Grid</h3>
   <table class="table w-100">
@@ -5,7 +7,7 @@
       <th>Country</th>
       <th>Capital City</th>
     </thead>
-    @foreach (Country country in ViewBag.List)
+    @foreach (Country country in Model)
     {
       <tr>
         <td>@country.Name</td>

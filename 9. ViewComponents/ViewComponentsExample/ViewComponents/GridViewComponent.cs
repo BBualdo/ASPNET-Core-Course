@@ -15,8 +15,7 @@ public class GridViewComponent : ViewComponent
       new Country("France", "Paris"),
       new Country("Spain", "Madrid")
     };
-    ViewBag.List = countries;
 
-    return View(); // invoke partial view from /Views/Shared/Components/Grid/Default.cshtml
+    return View(countries); // invoke partial view from /Views/Shared/Components/Grid/Default.cshtml
   }
 }
