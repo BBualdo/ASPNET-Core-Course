@@ -8,10 +8,25 @@ new Country("Germany", "Berlin"),
 new Country("France", "Paris"),
 new Country("Spain", "Madrid")
 };
+  CountryList countryList = new CountryList(countries);
 }
 
 <h1>Home</h1>
 @await Component.InvokeAsync("Grid", new
   {
-    countries
+    list = countryList
   })
+
+<button class="button-blue-back button">Load Champions</button>
+
+<div id="champions"></div>
+
+<script>
+  document.querySelector("button")
+    .addEventListener("click", async () => {
+      const response = await fetch("lol-champions");
+      const champions = await response.text();
+
+      document.getElementById("champions").innerHTML = champions;
+    })
+</script>

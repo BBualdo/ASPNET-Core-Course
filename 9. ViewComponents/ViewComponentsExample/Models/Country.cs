@@ -1,13 +1,16 @@
-﻿namespace ViewComponentsExample.Models;
-
-public class Country
+﻿namespace ViewComponentsExample.Models
 {
-  public string Name { get; set; }
-  public string CapitalCity { get; set; }
-
-  public Country(string name, string capital)
+  public class Country
   {
-    Name = name;
-    CapitalCity = capital;
+    public string Name { get; set; }
+    public string CapitalCity { get; set; }
+
+    public Country(string name, string capital)
+    {
+      Name = name;
+      CapitalCity = capital;
+    }
   }
 }
+
+

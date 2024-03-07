@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ViewComponentsExample.Models;
 
 namespace ViewComponentsExample.Controllers
 {
@@ -16,6 +17,21 @@ namespace ViewComponentsExample.Controllers
             return View();
         }
 
+        [Route("lol-champions")]
+        public ActionResult LoLChampions()
+        {
+            List<LoLChampion> champions = new List<LoLChampion>() {
+                new LoLChampion("Yasuo", "AD"),
+                new LoLChampion("Yone", "AD"),
+                new LoLChampion("Ekko", "AP"),
+                new LoLChampion("Fizz", "AP"),
+                new LoLChampion("Cailtyn", "AD")
+            };
+
+            ChampionList championList = new ChampionList(champions);
+
+            return ViewComponent("Champions", championList);
+        }
 
     }
 }

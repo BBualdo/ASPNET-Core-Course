@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ViewComponentsExample.Models;
 
-namespace ViewComponentsExample;
-
-// [ViewComponent]
-public class GridViewComponent : ViewComponent
+namespace ViewComponentsExample.ViewComponents
 {
-  public async Task<IViewComponentResult> InvokeAsync(List<Country> countries)
+  // [ViewComponent]
+  public class GridViewComponent : ViewComponent
   {
-    return View(countries); // invoke partial view from /Views/Shared/Components/Grid/Default.cshtml
+    public async Task<IViewComponentResult> InvokeAsync(CountryList list)
+    {
+      return View(list); // invoke partial view from /Views/Shared/Components/Grid/Default.cshtml
+    }
   }
 }
+
+
