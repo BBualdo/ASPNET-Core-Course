@@ -1,0 +1,35 @@
+@model City
+
+@{
+  string GetColor(int temperature)
+  {
+    if (temperature < 15)
+    {
+      return "ice";
+    }
+    else if (temperature < 30)
+    {
+      return "warm";
+    }
+    else
+    {
+      return "hot";
+    }
+  }
+}
+
+<a class="text-normal" href="/details/@Model.UniqueCode">
+  <div class="weather-card__outer">
+    <div class="weather-card__inner">
+      <div class="card-left">
+        <p class="city-name">@Model.Name</p>
+        <p class="date">@Model.Date.ToShortTimeString()</p>
+      </div>
+      <div class="card-right">
+        <p class="temperature">
+          <span class=@GetColor(Model.TemperatureCelcius)>@Model.TemperatureCelcius</span>&#176;C
+        </p>
+      </div>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,9 @@
+﻿@model List<City>
+
+@foreach (City city in Model)
+{
+  await Component.InvokeAsync("Card", new
+  {
+    city
+  });
+}
