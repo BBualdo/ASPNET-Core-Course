@@ -1,0 +1,15 @@
+@{
+  ViewBag.Title = "About page";
+
+  List<Country> countries = new List<Country>() {
+new Country("Japan", "Tokyo"),
+new Country("Australia", "Sydney"),
+new Country("USA", "Washington"),
+new Country("Brasil", "Rio de Janeiro"),
+new Country("Argentina", "Buenos Aires")
+};
+  CountryList countryList = new CountryList(countries);
+}
+
+<h1>About page</h1>
+<vc:grid list="countryList" />

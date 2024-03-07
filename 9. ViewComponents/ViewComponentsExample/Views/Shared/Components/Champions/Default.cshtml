@@ -1,0 +1,18 @@
+@model ChampionList
+
+<div class="box">
+  <h3>@Model.ListName</h3>
+  <table class="table w-100">
+    <thead>
+      <th>Country</th>
+      <th>Capital City</th>
+    </thead>
+    @foreach (LoLChampion champion in Model.ListItems)
+    {
+      <tr>
+        <td>@champion.Name</td>
+        <td>@champion.Damage</td>
+      </tr>
+    }
+  </table>
+</div>
