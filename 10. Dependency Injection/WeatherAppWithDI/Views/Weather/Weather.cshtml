@@ -1,0 +1,10 @@
+﻿@model List<CityWeather>
+
+<div class="weather-box">
+  <ul>
+    @foreach (CityWeather city in Model)
+    {
+      await Html.RenderPartialAsync("_WeatherCard", city);
+    }
+  </ul>
+</div>

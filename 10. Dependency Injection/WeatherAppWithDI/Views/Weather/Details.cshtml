@@ -1,0 +1,8 @@
+﻿@model CityWeather
+
+<a class="back__button" href="..">Back</a>
+<div class="weather-box">
+@{
+  await Html.RenderPartialAsync("_WeatherCard", Model);
+}
+</div>
