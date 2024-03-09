@@ -2,7 +2,7 @@
 
 namespace Services
 {
-  public class CitiesService : ICitiesService
+  public class CitiesService : ICitiesService, IDisposable
   {
     private List<string> _citites;
     private Guid _id;
@@ -16,6 +16,7 @@ namespace Services
 
     public CitiesService()
     {
+      // DB open connection
       _id = Guid.NewGuid();
       _citites = new List<string>() {
       "New York",
@@ -31,5 +32,9 @@ namespace Services
       return _citites;
     }
 
+    public void Dispose()
+    {
+      // DB close connection
+    }
   }
 }
