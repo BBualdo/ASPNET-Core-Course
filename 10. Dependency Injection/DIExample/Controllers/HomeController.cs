@@ -7,9 +7,10 @@ namespace DIExample.Controllers
   {
     private readonly ICitiesService _citiesService;
 
-    public HomeController()
+    public HomeController(ICitiesService citiesService)
     {
-      _citiesService = null; // ???
+      // parameter provided by IoC via Dependency Injection
+      _citiesService = citiesService;
     }
 
     [Route("/")]
