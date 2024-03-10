@@ -25,3 +25,27 @@ h1 {
   color: #9c00ff;
   filter: drop-shadow(1px 2px black);
 }
+
+.box {
+  width: 75%;
+  border-radius: 20px;
+  border: 1px solid #9c00ff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.box > h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #9c00ff;
+  text-transform: uppercase;
+}
+
+.box > p {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
