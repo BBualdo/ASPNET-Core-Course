@@ -11,10 +11,13 @@ namespace ConfigExample.Controllers
       _configuration = configuration;
     }
 
-    [Route("config")]
+    [Route("/")]
     public IActionResult Index()
     {
-      ViewBag.Config = _configuration.GetValue<string>("MyKey");
+      IConfiguration weatherAPI = _configuration.GetSection("WeatherAPI");
+      ViewBag.ClientID = _configuration["WeatherAPI:ClientID"];
+      // or
+      ViewBag.ClientSecret = weatherAPI["ClientSecret"];
       return View();
     }
   }
