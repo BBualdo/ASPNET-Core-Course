@@ -1,30 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace ConfigExample.Controllers
 {
   public class HomeController : Controller
   {
-    private readonly IConfiguration _configuration;
+    private readonly WeatherAPIOptions _options;
 
-    public HomeController(IConfiguration configuration)
+    public HomeController(IOptions<WeatherAPIOptions> options)
     {
-      _configuration = configuration;
+      _options = options.Value;
     }
 
     [Route("/")]
     public IActionResult Index()
     {
-      IConfiguration weatherAPISection = _configuration.GetSection("WeatherAPI");
-
-      // GET: Loads config values into a new Options object
-      WeatherAPIOptions? options = weatherAPISection.Get<WeatherAPIOptions>();
-
-      // BIND: Load config values into an existing Option object
-      //WeatherAPIOptions options = new WeatherAPIOptions();
-      //weatherAPISection.Bind(options);
-
-      ViewBag.ClientID = options?.ClientID;
-      ViewBag.ClientSecret = options?.ClientSecret;
+      ViewBag.ClientID = _options.ClientID;
+      ViewBag.ClientSecret = _options.ClientSecret;
       return View();
     }
   }
