@@ -3,3 +3,15 @@
   <p>Current Environment:</p>
   <h2>@ViewBag.Env</h2>
 </div>
+
+<environment include="Development">
+  <button class="button purple">
+    Only for Development Environment
+  </button>
+</environment>
+
+<environment exclude="Development">
+  <button class="button purple">
+    Not for Development Environment
+  </button>
+</environment>

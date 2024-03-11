@@ -17,6 +17,7 @@ main {
   align-items: center;
   justify-content: center;
   height: 100%;
+  gap: 10px;
 }
 
 h1 {
@@ -48,4 +49,22 @@ h1 {
   font-size: 24px;
   font-weight: bold;
   color: black;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.purple {
+  border: 2px solid #9c00ff;
+  color: #9c00ff;
+  transition: all 0.3s;
+}
+
+.purple:hover {
+  background-color: #9c00ff;
+  color: white;
+  border: 2px solid white;
 }
