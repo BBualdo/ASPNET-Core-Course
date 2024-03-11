@@ -1,5 +1,23 @@
-﻿@{
+﻿@model Stock;
+@{
   ViewBag.Title = "Home";
 }
 
-<h1>Home</h1>
+<table>
+  <thead>
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Current Price</th>
+    <th>Highest Price of the day</th>
+    <th>Lowest Price of the day</th>
+    <th>Open Price of the day</th>
+  </thead>
+  <tbody>
+    <td>@Model.Symbol</td>
+    <td>@Model.Name</td>
+    <td>$ @Model.CurrentPrice.ToString("N")</td>
+    <td>$ @Model.HighestPrice.ToString("N")</td>
+    <td>$ @Model.LowestPrice.ToString("N")</td>
+    <td>$ @Model.OpenPrice.ToString("N")</td>
+  </tbody>
+</table>

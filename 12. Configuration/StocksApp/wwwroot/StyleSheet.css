@@ -10,15 +10,27 @@
 }
 
 body {
+  min-height: 100vh;
+}
+
+main {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
   background: linear-gradient(180deg, var(--darkGreen) 0%, black 100%);
+  position: absolute;
+  width: 100%;
   padding: 20px;
   padding-right: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--darkGreen);
 }
 
 .logo {
@@ -57,4 +69,23 @@ header {
 
 .account-links > a:hover {
   color: var(--lightGreen);
+}
+
+table {
+  color: white;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px 20px;
+}
+
+th {
+  border: 2px solid var(--lightGreen);
+}
+
+td {
+  border: 2px solid white;
+  color: var(--lightGreen);
+  font-weight: bold;
 }
