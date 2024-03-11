@@ -14,10 +14,17 @@ namespace ConfigExample.Controllers
     [Route("/")]
     public IActionResult Index()
     {
-      IConfiguration weatherAPI = _configuration.GetSection("WeatherAPI");
-      ViewBag.ClientID = _configuration["WeatherAPI:ClientID"];
-      // or
-      ViewBag.ClientSecret = weatherAPI["ClientSecret"];
+      IConfiguration weatherAPISection = _configuration.GetSection("WeatherAPI");
+
+      // GET: Loads config values into a new Options object
+      WeatherAPIOptions? options = weatherAPISection.Get<WeatherAPIOptions>();
+
+      // BIND: Load config values into an existing Option object
+      //WeatherAPIOptions options = new WeatherAPIOptions();
+      //weatherAPISection.Bind(options);
+
+      ViewBag.ClientID = options?.ClientID;
+      ViewBag.ClientSecret = options?.ClientSecret;
       return View();
     }
   }
