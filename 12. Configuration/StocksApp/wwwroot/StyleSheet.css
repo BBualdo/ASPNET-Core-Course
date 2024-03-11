@@ -1,0 +1,60 @@
+﻿* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --darkGreen: #126500;
+  --lightGreen: #25d000;
+}
+
+body {
+}
+
+header {
+  background: linear-gradient(180deg, var(--darkGreen) 0%, black 100%);
+  padding: 20px;
+  padding-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo > i {
+  font-size: 40px;
+  color: var(--lightGreen);
+}
+
+.logo > h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.account-links {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.account-links > a {
+  padding: 10px 20px;
+  border-radius: 12px;
+  background-color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid var(--lightGreen);
+}
+
+.account-links > a:hover {
+  color: var(--lightGreen);
+}
