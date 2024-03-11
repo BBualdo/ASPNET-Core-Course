@@ -13,8 +13,6 @@ app.MapControllers();
 
 app.Run();
 
-// Secrets Manager is created separately in AppData folder on local computer to avoid exposing sensitive data in config files.
-// 
-// dotnet user-secrets init
-// dotnet user-secrets set "KeyName" "KeyValue"
-// dotnet user-secrets list
+// Environment Variables have lifetime equal to terminal window lifetime, where that variables has been declared.
+
+// $Env:KeyName__ChildKeyName="Value"
