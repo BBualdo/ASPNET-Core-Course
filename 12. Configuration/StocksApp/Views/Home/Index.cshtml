@@ -1,0 +1,17 @@
+﻿@model Stock;
+@{
+  ViewBag.Title = "Home";
+}
+
+<div class="stock__container">
+  <div class="stock__header">
+    <img alt="@Model.Name logo" src=@Model.LogoURL />
+    <h2>@Model.Name (@Model.Symbol)</h2>
+  </div>
+  <div class="stock__prices">
+    <p>Current Price: <span>$@Model.CurrentPrice</span></p>
+    <p>Highest Price of the day: <span>$@Model.HighestPrice</span></p>
+    <p>Lowest Price of the day: <span>$@Model.LowestPrice</span></p>
+    <p>Open Price of the day: <span>$@Model.OpenPrice</span></p>
+  </div>
+</div>

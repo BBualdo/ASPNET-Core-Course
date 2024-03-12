@@ -1,0 +1,21 @@
+﻿@model List<string>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Social Media Links</title>
+    <link rel="stylesheet" href="~/StyleSheet.css" />
+  </head>
+  <body>
+    <h1>Social Media Links</h1>
+    <div class="container">
+      <a href="@ViewBag.Options.Facebook">Facebook</a>
+      <environment exclude="Development">
+        <a href="@ViewBag.Options.Instagram">Instagram</a>
+      </environment>
+    <a href="@ViewBag.Options.Twitter">Twitter</a>
+    <a href="@ViewBag.Options.Youtube">Youtube</a>
+    </div>
+  </body>
+</html>
