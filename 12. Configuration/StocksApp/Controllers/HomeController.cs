@@ -36,7 +36,7 @@ namespace StocksApp.Controllers
         throw new InvalidOperationException("Cannot get response from Finnhub server.");
       }
 
-      Stock microsoftStock = new Stock()
+      Stock stock = new Stock()
       {
         LogoURL = companyProfileDictionary["logo"].ToString(),
         Symbol = companyProfileDictionary["ticker"].ToString(),
@@ -47,7 +47,7 @@ namespace StocksApp.Controllers
         OpenPrice = Convert.ToDouble(stockPriceDictionary["o"].ToString(), CultureInfo.InvariantCulture),
       };
 
-      return View(microsoftStock);
+      return View(stock);
     }
   }
 }
