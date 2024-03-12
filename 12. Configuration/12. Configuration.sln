@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigExample", "ConfigExample\ConfigExample.csproj", "{F5752B76-120A-496D-BED4-7158E216BDB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigExample", "ConfigExample\ConfigExample.csproj", "{F5752B76-120A-496D-BED4-7158E216BDB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StocksApp", "StocksApp\StocksApp.csproj", "{E2254D3E-8518-4BF7-9BE4-AAD6AD7EC689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StocksApp", "StocksApp\StocksApp.csproj", "{E2254D3E-8518-4BF7-9BE4-AAD6AD7EC689}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMediaLinksExercise", "SocialMediaLinksExercise\SocialMediaLinksExercise.csproj", "{C7105847-6BA9-43E1-B58D-C7795C9F2703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E2254D3E-8518-4BF7-9BE4-AAD6AD7EC689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2254D3E-8518-4BF7-9BE4-AAD6AD7EC689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2254D3E-8518-4BF7-9BE4-AAD6AD7EC689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7105847-6BA9-43E1-B58D-C7795C9F2703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7105847-6BA9-43E1-B58D-C7795C9F2703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7105847-6BA9-43E1-B58D-C7795C9F2703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7105847-6BA9-43E1-B58D-C7795C9F2703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

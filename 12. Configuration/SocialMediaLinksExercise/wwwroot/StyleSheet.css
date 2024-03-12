@@ -1,0 +1,17 @@
+﻿body {
+}
+
+.container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+a {
+  border: 1px solid gray;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 10px;
+  color: blue;
+}
