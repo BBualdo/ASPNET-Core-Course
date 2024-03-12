@@ -2,6 +2,7 @@
 {
   public class Stock
   {
+    public string? LogoURL { get; set; }
     public string? Symbol { get; set; }
     public string? Name { get; set; }
     public double CurrentPrice { get; set; }

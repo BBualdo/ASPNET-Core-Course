@@ -28,17 +28,19 @@ namespace StocksApp.Controllers
         _stockOptions.Apple = "AAPL";
       }
 
-      Dictionary<string, object>? stockPriceDictionary = await _finnhubService.GetStocksPrice(_stockOptions.Microsoft);
+      Dictionary<string, object>? stockPriceDictionary = await _finnhubService.GetStockPriceQuote(_stockOptions.Microsoft);
+      Dictionary<string, object>? companyProfileDictionary = await _finnhubService.GetCompanyProfile(_stockOptions.Microsoft);
 
-      if (stockPriceDictionary == null)
+      if (stockPriceDictionary == null || companyProfileDictionary == null)
       {
         throw new InvalidOperationException("Cannot get response from Finnhub server.");
       }
 
       Stock microsoftStock = new Stock()
       {
-        Symbol = _stockOptions.Microsoft,
-        Name = "Microsoft",
+        LogoURL = companyProfileDictionary["logo"].ToString(),
+        Symbol = companyProfileDictionary["ticker"].ToString(),
+        Name = companyProfileDictionary["name"].ToString(),
         CurrentPrice = Convert.ToDouble(stockPriceDictionary["c"].ToString(), CultureInfo.InvariantCulture),
         HighestPrice = Convert.ToDouble(stockPriceDictionary["h"].ToString(), CultureInfo.InvariantCulture),
         LowestPrice = Convert.ToDouble(stockPriceDictionary["l"].ToString(), CultureInfo.InvariantCulture),

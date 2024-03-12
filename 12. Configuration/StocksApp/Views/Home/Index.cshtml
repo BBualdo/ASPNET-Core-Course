@@ -3,21 +3,15 @@
   ViewBag.Title = "Home";
 }
 
-<table>
-  <thead>
-    <th>Symbol</th>
-    <th>Name</th>
-    <th>Current Price</th>
-    <th>Highest Price of the day</th>
-    <th>Lowest Price of the day</th>
-    <th>Open Price of the day</th>
-  </thead>
-  <tbody>
-    <td>@Model.Symbol</td>
-    <td>@Model.Name</td>
-    <td>$ @Model.CurrentPrice.ToString("N")</td>
-    <td>$ @Model.HighestPrice.ToString("N")</td>
-    <td>$ @Model.LowestPrice.ToString("N")</td>
-    <td>$ @Model.OpenPrice.ToString("N")</td>
-  </tbody>
-</table>
+<div class="stock__container">
+  <div class="stock__header">
+    <img alt="@Model.Name logo" src=@Model.LogoURL />
+    <h2>@Model.Name (@Model.Symbol)</h2>
+  </div>
+  <div class="stock__prices">
+    <p>Current Price: <span>$@Model.CurrentPrice</span></p>
+    <p>Highest Price of the day: <span>$@Model.HighestPrice</span></p>
+    <p>Lowest Price of the day: <span>$@Model.LowestPrice</span></p>
+    <p>Open Price of the day: <span>$@Model.OpenPrice</span></p>
+  </div>
+</div>
