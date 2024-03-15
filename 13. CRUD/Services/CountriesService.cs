@@ -49,7 +49,20 @@ namespace Services
     }
     public CountryResponse GetCountryById(Guid? id)
     {
-      throw new NotImplementedException();
+      if (id == null)
+      {
+        throw new ArgumentNullException();
+      }
+
+      CountryResponse matchingCountry = _countries.Select(country => country.ToCountryResponse()).Where(country => country.CountryID == id).First();
+
+      if (matchingCountry == null)
+      {
+        throw new IndexOutOfRangeException("Country has been not found");
+      }
+
+      return matchingCountry;
+
     }
   }
 }
