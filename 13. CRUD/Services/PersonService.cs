@@ -1,17 +1,29 @@
 ﻿using Entities;
 using ServiceContracts;
 using ServiceContracts.DTO;
+using Services.Helpers;
 
 namespace Services
 {
   public class PersonService : IPersonService
   {
     private readonly List<Person> _people;
+    private readonly ICountriesService _countriesService;
 
     public PersonService()
     {
       _people = new List<Person>();
+      _countriesService = new CountriesService();
     }
+
+    private PersonResponse ConvertPersonToPersonResponse(Person person)
+    {
+      PersonResponse personResponse = person.ToPersonResponse();
+      personResponse.Country = _countriesService.GetCountryById(personResponse.CountryID)?.CountryName;
+
+      return personResponse;
+    }
+
     public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
     {
       if (personAddRequest == null)
@@ -19,16 +31,14 @@ namespace Services
         throw new ArgumentNullException(nameof(personAddRequest));
       }
 
-      if (personAddRequest.PersonName == null)
-      {
-        throw new ArgumentException(nameof(personAddRequest.PersonName));
-      }
+      // Model validation
+      ValidationHelper.ModelValidation(personAddRequest);
 
       Person personToAdd = personAddRequest.ToPerson();
       personToAdd.PersonID = Guid.NewGuid();
       _people.Add(personToAdd);
 
-      return personToAdd.ToPersonResponse();
+      return ConvertPersonToPersonResponse(personToAdd);
     }
 
     public List<PersonResponse> GetAllPeople()

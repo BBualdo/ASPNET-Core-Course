@@ -1,11 +1,15 @@
 ﻿using Entities;
 using ServiceContracts.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace ServiceContracts.DTO
 {
   public class PersonAddRequest
   {
+    [Required(ErrorMessage = "Person name can't be empty.")]
     public string? PersonName { get; set; }
+    [Required(ErrorMessage = "Email is required.")]
+    [EmailAddress(ErrorMessage = "Invalid email adress.")]
     public string? Email { get; set; }
     public DateTime? DateOfBirth { get; set; }
     public GenderOptions? Gender { get; set; }

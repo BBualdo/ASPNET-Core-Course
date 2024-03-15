@@ -55,7 +55,8 @@ namespace CRUDTests
         PersonName = "Sebastian",
         DateOfBirth = new DateTime(2000, 5, 23),
         ReceivesNewsletter = true,
-        Address = "Example 23, 32-426 Atlantis"
+        Address = "Example 23, 32-426 Atlantis",
+        Email = "example1@gmail.com"
       };
 
       // Act
@@ -92,6 +93,7 @@ namespace CRUDTests
           DateOfBirth = new DateTime(2000, 5, 23),
           Gender = GenderOptions.Male,
           ReceivesNewsletter = true,
+          Email = "example1@gmail.com"
         },
         new()
         {
@@ -99,6 +101,7 @@ namespace CRUDTests
           DateOfBirth = new DateTime(1999, 4, 30),
           Gender = GenderOptions.Female,
           ReceivesNewsletter = false,
+          Email = "example2@gmail.com"
         }
       };
 
