@@ -124,5 +124,39 @@ namespace CRUDTests
     }
 
     #endregion
+
+    #region GetPersonByIdTests
+    [Fact]
+    public void GetPersonById_NullID()
+    {
+      // Arrange
+      Guid? id = null;
+      // Act
+      PersonResponse? wantedPerson = _personService.GetPersonById(id);
+      // Assert
+      Assert.Null(wantedPerson);
+    }
+
+    [Fact]
+    public void GetPersonById_ValidPersonID()
+    {
+      // Arrange
+      PersonAddRequest personToAdd = new()
+      {
+        PersonName = "Sebastian",
+        DateOfBirth = new DateTime(2000, 5, 23),
+        Email = "example@example.com",
+      };
+
+      List<PersonResponse> initialPeopleList = new List<PersonResponse>();
+
+      PersonResponse addedPerson = _personService.AddPerson(personToAdd);
+      initialPeopleList.Add(addedPerson);
+      // Act
+      PersonResponse? wantedPerson = _personService.GetPersonById(addedPerson.PersonID);
+      // Assert
+      Assert.Contains(wantedPerson, initialPeopleList);
+    }
+    #endregion
   }
 }
