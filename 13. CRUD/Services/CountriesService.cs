@@ -47,22 +47,21 @@ namespace Services
     {
       return _countries.Select(country => country.ToCountryResponse()).ToList();
     }
-    public CountryResponse GetCountryById(Guid? id)
+    public CountryResponse? GetCountryById(Guid? id)
     {
       if (id == null)
       {
-        throw new ArgumentNullException();
+        return null;
       }
 
-      CountryResponse matchingCountry = _countries.Select(country => country.ToCountryResponse()).Where(country => country.CountryID == id).First();
+      Country? matchingCountry = _countries.FirstOrDefault(country => country.CountryID == id);
 
       if (matchingCountry == null)
       {
-        throw new IndexOutOfRangeException("Country has been not found");
+        return null;
       }
 
-      return matchingCountry;
-
+      return matchingCountry.ToCountryResponse();
     }
   }
 }

@@ -131,80 +131,25 @@ namespace CRUDTests
       // Arrange
       Guid? id = null;
 
+      // Act
+      CountryResponse? countryResponse = _countriesService.GetCountryById(id);
+
       // Assert
-      Assert.Throws<ArgumentNullException>(() =>
-      {
-        // Act
-        _countriesService.GetCountryById(id);
-      });
+      Assert.Null(countryResponse);
     }
 
+    // When country ID is not null
     [Fact]
-    public void GetCountryById_EmptyList()
+    public void GetCountryById_ValidCountryID()
     {
       // Arrange
-      Guid? id = Guid.NewGuid();
-      List<CountryResponse> countries = new List<CountryResponse>();
-
-      // Assert
-      Assert.Throws<IndexOutOfRangeException>(() =>
-      {
-        // Act
-        CountryResponse matchingCountry = _countriesService.GetCountryById(id);
-      });
-    }
-
-    [Fact]
-    public void GetCountryById_NotFound()
-    {
-      //Arrange
-      Guid? id = Guid.NewGuid();
-      List<CountryResponse> countries = new List<CountryResponse>()
-      {
-        new()
-        {
-          CountryID = Guid.NewGuid(),
-          CountryName = "Poland",
-        },
-        new()
-        {
-          CountryID = Guid.NewGuid(),
-          CountryName = "USA"
-        }
-      };
-
+      CountryAddRequest? countryToAdd = new CountryAddRequest() { CountryName = "Spain" };
+      CountryResponse addedCountry = _countriesService.AddCountry(countryToAdd);
       // Act
-      CountryResponse wantedCountry = _countriesService.GetCountryById(id);
+      CountryResponse? wantedCountry = _countriesService.GetCountryById(addedCountry.CountryID);
 
       // Assert
-      Assert.Contains(wantedCountry, countries);
-    }
-
-    [Fact]
-    public void GetCountryById_Found()
-    {
-      // Arrange
-      Guid knownId = Guid.NewGuid();
-      List<CountryResponse> countries = new List<CountryResponse>()
-      {
-        new()
-        {
-          CountryID = knownId,
-          CountryName = "Poland",
-        },
-        new()
-        {
-          CountryID = Guid.NewGuid(),
-          CountryName = "USA"
-        }
-      };
-
-      // Act
-      CountryResponse wantedCountry = _countriesService.GetCountryById(knownId);
-
-      // Assert
-      Assert.Contains(wantedCountry, countries);
-
+      Assert.Equal(wantedCountry, addedCountry);
     }
     #endregion
   }
