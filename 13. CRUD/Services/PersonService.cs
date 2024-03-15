@@ -30,5 +30,10 @@ namespace Services
 
       return personToAdd.ToPersonResponse();
     }
+
+    public List<PersonResponse> GetAllPeople()
+    {
+      return _people.Select(person => person.ToPersonResponse()).ToList();
+    }
   }
 }
