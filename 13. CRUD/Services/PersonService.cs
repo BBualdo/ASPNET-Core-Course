@@ -14,7 +14,21 @@ namespace Services
     }
     public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
     {
-      throw new NotImplementedException();
+      if (personAddRequest == null)
+      {
+        throw new ArgumentNullException(nameof(personAddRequest));
+      }
+
+      if (personAddRequest.PersonName == null)
+      {
+        throw new ArgumentException(nameof(personAddRequest.PersonName));
+      }
+
+      Person personToAdd = personAddRequest.ToPerson();
+      personToAdd.PersonID = Guid.NewGuid();
+      _people.Add(personToAdd);
+
+      return personToAdd.ToPersonResponse();
     }
   }
 }
