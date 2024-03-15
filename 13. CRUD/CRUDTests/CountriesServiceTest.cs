@@ -121,5 +121,91 @@ namespace CRUDTests
     }
 
     #endregion
+
+    #region GetCountryByIdTests
+
+    // When Country ID is null
+    [Fact]
+    public void GetCountryById_NullID()
+    {
+      // Arrange
+      Guid? id = null;
+
+      // Assert
+      Assert.Throws<ArgumentNullException>(() =>
+      {
+        // Act
+        _countriesService.GetCountryById(id);
+      });
+    }
+
+    [Fact]
+    public void GetCountryById_EmptyList()
+    {
+      // Arrange
+      Guid? id = Guid.NewGuid();
+      List<CountryResponse> countries = new List<CountryResponse>();
+
+      // Assert
+      Assert.Throws<IndexOutOfRangeException>(() =>
+      {
+        // Act
+        CountryResponse matchingCountry = _countriesService.GetCountryById(id);
+      });
+    }
+
+    [Fact]
+    public void GetCountryById_NotFound()
+    {
+      //Arrange
+      Guid? id = Guid.NewGuid();
+      List<CountryResponse> countries = new List<CountryResponse>()
+      {
+        new()
+        {
+          CountryID = Guid.NewGuid(),
+          CountryName = "Poland",
+        },
+        new()
+        {
+          CountryID = Guid.NewGuid(),
+          CountryName = "USA"
+        }
+      };
+
+      // Act
+      CountryResponse wantedCountry = _countriesService.GetCountryById(id);
+
+      // Assert
+      Assert.Contains(wantedCountry, countries);
+    }
+
+    [Fact]
+    public void GetCountryById_Found()
+    {
+      // Arrange
+      Guid knownId = Guid.NewGuid();
+      List<CountryResponse> countries = new List<CountryResponse>()
+      {
+        new()
+        {
+          CountryID = knownId,
+          CountryName = "Poland",
+        },
+        new()
+        {
+          CountryID = Guid.NewGuid(),
+          CountryName = "USA"
+        }
+      };
+
+      // Act
+      CountryResponse wantedCountry = _countriesService.GetCountryById(knownId);
+
+      // Assert
+      Assert.Contains(wantedCountry, countries);
+
+    }
+    #endregion
   }
 }
