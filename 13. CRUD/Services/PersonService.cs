@@ -60,5 +60,10 @@ namespace Services
       }
       return person.ToPersonResponse();
     }
+
+    public List<PersonResponse> GetFilteredPeople(string searchBy, string? searchString)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

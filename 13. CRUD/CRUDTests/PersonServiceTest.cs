@@ -1,4 +1,5 @@
-﻿using ServiceContracts;
+﻿using Entities;
+using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
 using Services;
@@ -186,6 +187,93 @@ namespace CRUDTests
       // Assert
       Assert.Contains(wantedPerson, initialPeopleList);
     }
+    #endregion
+
+    #region GetFilteredPeopleTests
+    [Fact]
+    public void GetFilteredPeople_EmptySearchString()
+    {
+      // Arrange 
+      List<PersonAddRequest> peopleToAdd = new List<PersonAddRequest>() {
+        new()
+        {
+          PersonName = "Sebastian",
+          Email = "example@example.com"
+        },
+        new()
+        {
+          PersonName = "Asia",
+          Email = "example123@example.com"
+        }
+      };
+
+      foreach (PersonAddRequest personToAdd in peopleToAdd)
+      {
+        _personService.AddPerson(personToAdd);
+      }
+
+      List<PersonResponse> actualPeopleList = _personService.GetAllPeople();
+
+      // Act
+      List<PersonResponse> filteredPeopleList = _personService.GetFilteredPeople(nameof(Person.PersonName), "");
+
+
+      // Assert
+      foreach (PersonResponse person in actualPeopleList)
+      {
+        Assert.Contains(person, filteredPeopleList);
+      }
+    }
+
+    [Fact]
+    public void GetFilteredPeople_ValidParameters()
+    {
+      // Arrange 
+      string searchString = "as";
+      List<PersonAddRequest> peopleToAdd = new List<PersonAddRequest>() {
+        new()
+        {
+          PersonName = "Sebastian",
+          Email = "example@example.com"
+        },
+        new()
+        {
+          PersonName = "Asia",
+          Email = "example123@example.com"
+        },
+        new()
+        {
+          PersonName = "Bartek",
+          Email = "example321@gmail.com"
+        }
+      };
+
+      foreach (PersonAddRequest personToAdd in peopleToAdd)
+      {
+        _personService.AddPerson(personToAdd);
+      }
+
+      List<PersonResponse> actualPeopleList = _personService.GetAllPeople();
+
+      // Act
+      List<PersonResponse> filteredPeopleList = _personService.GetFilteredPeople(nameof(Person.PersonName), searchString);
+
+
+      // Assert
+      foreach (PersonResponse person in actualPeopleList)
+      {
+        if (person.PersonName != null)
+        {
+          if (person.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+          {
+            Assert.Contains(person, filteredPeopleList);
+          }
+        }
+
+      }
+    }
+
+
     #endregion
   }
 }
