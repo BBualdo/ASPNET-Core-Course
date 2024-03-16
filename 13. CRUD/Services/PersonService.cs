@@ -63,7 +63,50 @@ namespace Services
 
     public List<PersonResponse> GetFilteredPeople(string searchBy, string? searchString)
     {
-      throw new NotImplementedException();
+      List<PersonResponse> allPeople = GetAllPeople();
+      List<PersonResponse> filteredPeople = allPeople;
+
+      if (string.IsNullOrEmpty(searchString) || string.IsNullOrEmpty(searchBy))
+      {
+        return filteredPeople;
+      }
+
+      switch (searchBy)
+      {
+        case nameof(Person.PersonName):
+          filteredPeople = allPeople.Where(person =>
+          !string.IsNullOrEmpty(person.PersonName) ?
+          person.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
+          break;
+        case nameof(Person.Email):
+          filteredPeople = allPeople.Where(person =>
+          !string.IsNullOrEmpty(person.Email) ?
+          person.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
+          break;
+        case nameof(Person.Address):
+          filteredPeople = allPeople.Where(person =>
+          !string.IsNullOrEmpty(person.Address) ?
+          person.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
+          break;
+        case nameof(Person.DateOfBirth):
+          filteredPeople = allPeople.Where(person =>
+          person.DateOfBirth != null ?
+          person.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
+          break;
+        case nameof(Person.CountryID):
+          filteredPeople = allPeople.Where(person =>
+          !string.IsNullOrEmpty(person.Country) ?
+          person.Country.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
+          break;
+        case nameof(Person.Gender):
+          filteredPeople = allPeople.Where(person =>
+          !string.IsNullOrEmpty(person.Gender) ?
+          person.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
+          break;
+        default: filteredPeople = allPeople; break;
+      }
+
+      return filteredPeople;
     }
   }
 }
