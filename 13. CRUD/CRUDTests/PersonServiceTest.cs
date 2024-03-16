@@ -2,16 +2,21 @@
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
 using Services;
+using Xunit.Abstractions;
 
 namespace CRUDTests
 {
   public class PersonServiceTest
   {
     private readonly IPersonService _personService;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly ICountriesService _countriesService;
 
-    public PersonServiceTest()
+    public PersonServiceTest(ITestOutputHelper testOutputHelper)
     {
       _personService = new PersonService();
+      _testOutputHelper = testOutputHelper;
+      _countriesService = new CountriesService();
     }
 
     #region AddPersonTests
@@ -85,6 +90,12 @@ namespace CRUDTests
     public void GetAllPeople_ContainingPeople()
     {
       // Arrange
+      CountryAddRequest countryAddRequest = new CountryAddRequest()
+      {
+        CountryName = "Poland"
+      };
+      CountryResponse country = _countriesService.AddCountry(countryAddRequest);
+
       List<PersonAddRequest> peopleToAddList = new List<PersonAddRequest>()
       {
         new()
@@ -93,7 +104,9 @@ namespace CRUDTests
           DateOfBirth = new DateTime(2000, 5, 23),
           Gender = GenderOptions.Male,
           ReceivesNewsletter = true,
-          Email = "example1@gmail.com"
+          Email = "example1@gmail.com",
+          CountryID = country.CountryID,
+          Address = "Example Address",
         },
         new()
         {
@@ -101,23 +114,39 @@ namespace CRUDTests
           DateOfBirth = new DateTime(1999, 4, 30),
           Gender = GenderOptions.Female,
           ReceivesNewsletter = false,
-          Email = "example2@gmail.com"
+          Email = "example2@gmail.com",
+          CountryID = country.CountryID,
+          Address = "Example Address",
         }
       };
 
       List<PersonResponse> initialPeopleList = new List<PersonResponse>();
-
-      // Act
       foreach (PersonAddRequest personToAdd in peopleToAddList)
       {
         PersonResponse addedPerson = _personService.AddPerson(personToAdd);
         initialPeopleList.Add(addedPerson);
       }
 
+      // Printing
+      _testOutputHelper.WriteLine("Expected");
+      foreach (PersonResponse expectedPerson in initialPeopleList)
+      {
+        _testOutputHelper.WriteLine(expectedPerson.ToString());
+      }
+
+      // Act
       List<PersonResponse> actualPeopleList = _personService.GetAllPeople();
+
+      // Printing
+      _testOutputHelper.WriteLine("Actual");
+      foreach (PersonResponse actualPerson in actualPeopleList)
+      {
+        _testOutputHelper.WriteLine(actualPerson.ToString());
+      }
 
       foreach (PersonResponse expectedPerson in initialPeopleList)
       {
+
         // Assert
         Assert.Contains(expectedPerson, actualPeopleList);
       }
