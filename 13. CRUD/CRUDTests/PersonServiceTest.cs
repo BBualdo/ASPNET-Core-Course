@@ -391,5 +391,36 @@ namespace CRUDTests
       Assert.Equal(personById, updatedPerson);
     }
     #endregion
+
+    #region DeletePersonTests
+    [Fact]
+    public void DeletePerson_NullID()
+    {
+      Guid? id = null;
+
+      Assert.Throws<ArgumentNullException>(() =>
+      {
+        _personService.DeletePerson(id);
+      });
+    }
+
+    [Fact]
+
+    public void DeletePerson_Success()
+    {
+      PersonAddRequest personToAdd = new PersonAddRequest()
+      {
+        PersonName = "Sebastian",
+        Email = "example@gmail.com",
+        Gender = GenderOptions.Male,
+      };
+
+      PersonResponse addedPerson = _personService.AddPerson(personToAdd);
+
+      bool isDeleted = _personService.DeletePerson(addedPerson.PersonID);
+
+      Assert.True(isDeleted);
+    }
+    #endregion
   }
 }

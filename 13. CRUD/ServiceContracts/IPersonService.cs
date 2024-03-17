@@ -12,5 +12,6 @@ namespace ServiceContracts
     List<PersonResponse> GetSortedPeople(List<PersonResponse> allPeople, string sortBy, SortOrderOptions sortOrder);
 
     PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest);
+    bool DeletePerson(Guid? personID);
   }
 }
