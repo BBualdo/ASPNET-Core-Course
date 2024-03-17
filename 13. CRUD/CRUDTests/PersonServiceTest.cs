@@ -282,7 +282,7 @@ namespace CRUDTests
     public void GetSortedPeople_ValidParameters()
     {
       // Arrange 
-      SortOrderOptions order = SortOrderOptions.Ascending;
+      SortOrderOptions order = SortOrderOptions.Descending;
       List<PersonAddRequest> peopleToAdd = new List<PersonAddRequest>() {
         new()
         {
@@ -309,7 +309,7 @@ namespace CRUDTests
       List<PersonResponse> actualPeopleList = _personService.GetAllPeople();
 
       // Act
-      List<PersonResponse> sortedPeople = _personService.GetSortedPeople(actualPeopleList, "PersonName", order);
+      List<PersonResponse> sortedPeople = _personService.GetSortedPeople(actualPeopleList, nameof(Person.PersonName), order);
       actualPeopleList = actualPeopleList.OrderByDescending(person => person.PersonName).ToList();
 
       // Assert
