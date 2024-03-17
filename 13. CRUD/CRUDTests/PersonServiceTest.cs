@@ -320,5 +320,76 @@ namespace CRUDTests
 
     }
     #endregion
+
+    #region UpdatePersonTests
+    [Fact]
+    public void UpdatePerson_NullPerson()
+    {
+      // Arrange
+      PersonUpdateRequest? personUpdateRequest = null;
+
+      // Assert
+      Assert.Throws<ArgumentNullException>(() =>
+      {
+        // Act
+        _personService.UpdatePerson(personUpdateRequest);
+      });
+    }
+
+    [Fact]
+    public void UpdatePerson_NoNamePerson()
+    {
+      // Arrange
+      PersonUpdateRequest personUpdateRequest = new PersonUpdateRequest()
+      {
+        PersonName = null,
+      };
+
+      // Assert
+      Assert.Throws<ArgumentException>(() =>
+      {
+        // Act
+        _personService.UpdatePerson(personUpdateRequest);
+      });
+    }
+
+    [Fact]
+    public void UpdatePerson_InvalidID()
+    {
+      PersonUpdateRequest personUpdateRequest = new PersonUpdateRequest()
+      {
+        PersonID = Guid.NewGuid(),
+      };
+
+      Assert.Throws<ArgumentException>(() =>
+      {
+        _personService.UpdatePerson(personUpdateRequest);
+      });
+    }
+
+    [Fact]
+    public void UpdatePerson_CorrectPerson()
+    {
+      // Arrange
+      PersonAddRequest personAddRequest = new PersonAddRequest()
+      {
+        PersonName = "Sebastian",
+        Email = "example@example.com",
+        DateOfBirth = new DateTime(2000, 5, 23),
+        Gender = GenderOptions.Male,
+      };
+      PersonResponse addedPerson = _personService.AddPerson(personAddRequest);
+      PersonUpdateRequest personToUpdate = addedPerson.ToPersonUpdateRequest();
+      personToUpdate.PersonName = "Seba";
+      personToUpdate.Email = "mrseb@outlook.com";
+
+      // Act
+      PersonResponse updatedPerson = _personService.UpdatePerson(personToUpdate);
+      PersonResponse? personById = _personService.GetPersonById(personToUpdate.PersonID);
+
+      // Assert
+      Assert.Equal(personById, updatedPerson);
+    }
+    #endregion
   }
 }

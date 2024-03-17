@@ -167,5 +167,28 @@ namespace Services
         return sortedPeople;
       }
     }
+
+    public PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest)
+    {
+      if (personUpdateRequest == null)
+      {
+        throw new ArgumentNullException(nameof(personUpdateRequest));
+      }
+
+      ValidationHelper.ModelValidation(personUpdateRequest);
+
+      Person? foundPerson = _people.FirstOrDefault(person => person.PersonID == personUpdateRequest.PersonID);
+
+      if (foundPerson == null)
+      {
+        throw new ArgumentException("Person not found");
+      }
+
+      Person convertedPersonRequest = personUpdateRequest.ToPerson();
+
+      foundPerson = convertedPersonRequest;
+
+      return foundPerson.ToPersonResponse();
+    }
   }
 }
