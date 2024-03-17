@@ -275,5 +275,50 @@ namespace CRUDTests
 
 
     #endregion
+
+    #region GetSortedPeopleTests
+
+    [Fact]
+    public void GetSortedPeople_ValidParameters()
+    {
+      // Arrange 
+      SortOrderOptions order = SortOrderOptions.Ascending;
+      List<PersonAddRequest> peopleToAdd = new List<PersonAddRequest>() {
+        new()
+        {
+          PersonName = "Sebastian",
+          Email = "example@example.com"
+        },
+        new()
+        {
+          PersonName = "Asia",
+          Email = "example123@example.com"
+        },
+        new()
+        {
+          PersonName = "Bartek",
+          Email = "example321@gmail.com"
+        }
+      };
+
+      foreach (PersonAddRequest personToAdd in peopleToAdd)
+      {
+        _personService.AddPerson(personToAdd);
+      }
+
+      List<PersonResponse> actualPeopleList = _personService.GetAllPeople();
+
+      // Act
+      List<PersonResponse> sortedPeople = _personService.GetSortedPeople(actualPeopleList, "PersonName", order);
+      actualPeopleList = actualPeopleList.OrderByDescending(person => person.PersonName).ToList();
+
+      // Assert
+      for (int i = 0; i < sortedPeople.Count; i++)
+      {
+        Assert.Equal(sortedPeople[i], actualPeopleList[i]);
+      }
+
+    }
+    #endregion
   }
 }
