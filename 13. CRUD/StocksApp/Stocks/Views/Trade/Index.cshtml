@@ -1,0 +1,11 @@
+﻿@model StockTrade
+
+<div class="container flex flex-col gap-10">
+  <div class="flex items-center gap-4">
+    <h2>@Model.StockName</h2>
+    <h2>(@Model.StockSymbol)</h2>
+  </div>
+  <div class="price">
+    <p><span>$</span> @Model.Price</p>
+  </div>
+</div>

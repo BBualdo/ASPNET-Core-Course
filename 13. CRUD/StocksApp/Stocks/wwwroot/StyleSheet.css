@@ -1,0 +1,119 @@
+﻿* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Geologica", sans-serif;
+}
+
+:root {
+  --darkGreen: #1b7d00;
+}
+
+body {
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+main {
+  height: 100%;
+}
+
+header {
+  border-bottom: 2px solid gray;
+  background-color: black;
+  padding: 20px 40px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+header > h1 {
+  color: var(--darkGreen);
+  font-weight: bold;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.button {
+  padding: 20px 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.btn__green {
+  background-color: var(--darkGreen);
+  border: 4px solid white;
+  color: white;
+  transition: all 0.2s;
+}
+
+.btn__green:hover {
+  background-color: white;
+  border-color: var(--darkGreen);
+  color: var(--darkGreen);
+}
+
+.container {
+  margin-top: 120px;
+  padding: 40px;
+}
+
+.price > p {
+  font-size: 52px;
+  font-weight: bold;
+}
+
+.price > p > span {
+  font-size: 40px;
+  color: var(--darkGreen);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-4 {
+  gap: 16px;
+}
+
+.gap-6 {
+  gap: 24px;
+}
+
+.gap-10 {
+  gap: 40px;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.min-h-full {
+  min-height: 100vh;
+}
+
+.text-darkGreen {
+  color: var(--darkGreen);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
