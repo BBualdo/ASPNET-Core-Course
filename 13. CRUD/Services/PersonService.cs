@@ -147,32 +147,32 @@ namespace Services
 
       switch (searchBy)
       {
-        case nameof(Person.PersonName):
+        case nameof(PersonResponse.PersonName):
           filteredPeople = allPeople.Where(person =>
           !string.IsNullOrEmpty(person.PersonName) ?
           person.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
           break;
-        case nameof(Person.Email):
+        case nameof(PersonResponse.Email):
           filteredPeople = allPeople.Where(person =>
           !string.IsNullOrEmpty(person.Email) ?
           person.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
           break;
-        case nameof(Person.Address):
+        case nameof(PersonResponse.Address):
           filteredPeople = allPeople.Where(person =>
           !string.IsNullOrEmpty(person.Address) ?
           person.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
           break;
-        case nameof(Person.DateOfBirth):
+        case nameof(PersonResponse.DateOfBirth):
           filteredPeople = allPeople.Where(person =>
           person.DateOfBirth != null ?
           person.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
           break;
-        case nameof(Person.CountryID):
+        case nameof(PersonResponse.CountryID):
           filteredPeople = allPeople.Where(person =>
           !string.IsNullOrEmpty(person.Country) ?
           person.Country.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
           break;
-        case nameof(Person.Gender):
+        case nameof(PersonResponse.Gender):
           filteredPeople = allPeople.Where(person =>
           !string.IsNullOrEmpty(person.Gender) ?
           person.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
