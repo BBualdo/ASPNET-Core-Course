@@ -9,7 +9,7 @@ namespace CRUDTests
     private readonly ICountriesService _countriesService;
     public CountriesServiceTest(/*DI Not supported by default*/)
     {
-      _countriesService = new CountriesService();
+      _countriesService = new CountriesService(false);
     }
 
     #region AddCountryTests

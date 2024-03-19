@@ -17,7 +17,7 @@ namespace CRUDTests
     {
       _personService = new PersonService();
       _testOutputHelper = testOutputHelper;
-      _countriesService = new CountriesService();
+      _countriesService = new CountriesService(false);
     }
 
     #region AddPersonTests
